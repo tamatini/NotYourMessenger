@@ -11,7 +11,7 @@
     "create-installer-win": "node installers/windows/createinstaller.js",
     "create-installer-mac": "electron-installer-dmg ./release-builds/Electron\\ tutorial\\ app-darwin-x64/Electron\\ NotYourMessenger\\ app.app NotYourMessenger --out=release-builds --overwrite --icon=assets/icons/mac/icon.icns"
   },
-  "author": "",
+  "author": "TEAHUI Jeffrey",
   "license": "ISC",
   "devDependencies": {
     "electron": "^6.0.3",
