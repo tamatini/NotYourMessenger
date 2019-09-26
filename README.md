@@ -35,7 +35,7 @@ dans la partie "Fonctionnalités"
 
 - pas d'appel audio/vidéo(en cour)
 - ~~pouce bleu de mauvaise couleur~~
-- icones ce chevauche sur une certaine taille de fenêtre
+- ~~icones ce chevauche sur une certaine taille de fenêtre~~
 - ~~fond des liens de la mauvaise couleur~~
 
 ## En cours:

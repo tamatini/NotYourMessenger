@@ -1,0 +1,7 @@
+[Version 1.0.1] 25/09/2019 Mise à jours mineurs
+
+- correction du bug des icônes qui se chevauchaient.
+- correction du bug du pouce bleu qui apparaissait sur fond blanc.
+- changement de certaines couleurs pour le darkmode.
+- sélection de son thême de couleurs par tchat.
+- réduction de la largeur minimal a 550pixel

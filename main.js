@@ -9,6 +9,7 @@ const fs = require('fs');
 
 let messenger;
 let loadingWindow;
+let appel
 
 // squirrel installation méthode
 if (setupEvents.handleSquirrelEvent()) {
@@ -55,12 +56,19 @@ app.on('ready', function(){
             preload: path.join(__dirname, '/renderer.js')
         },
         minHeight: 400,
-        minWidth: 600,
+        minWidth: 550,
         height: 900,
         width: 950,
         icon: path.join(__dirname, "/static/img/mess.ico"),
         frame: true,
-        show: false
+        show: false,
+        title: "Not Your Messenger",
+    });
+
+    appel = new BrowserWindow({
+        height: 200,
+        width: 200,
+        show: false,
     });
 
     // démarrage de l'application
@@ -70,7 +78,7 @@ app.on('ready', function(){
         messenger.show();
     });
 
-    
+
 // fonctionnalités
     // désactive le menu et affiche l'url messenger
     messenger.loadURL('http://www.messenger.com/login');
@@ -79,6 +87,7 @@ app.on('ready', function(){
     });
 
     // ouvrir les url externe dans le navigateur de l'os
+
     messenger.webContents.on('new-window', function(e, url) {
         e.preventDefault();
         shell.openExternal(url);
@@ -106,6 +115,5 @@ app.on('ready', function(){
 
     // fonctionnalité taskbar
     // flash...
-
 
 })

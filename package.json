@@ -1,6 +1,6 @@
 {
   "name": "notyourmessenger",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Not Your Messenger permettant de concentrer différent réseau sociaux",
   "main": "main.js",
   "scripts": {

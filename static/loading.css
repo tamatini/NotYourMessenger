@@ -1,6 +1,5 @@
 html { background: transparent }
 
-
 #webview {
 	width: 100vw;
 	height: 100vh;
@@ -27,9 +26,6 @@ body {
 	background-color: transparent !important;
 }
 
-
-
-
 ._17w2, ._6ybl, ._497p, ._1ht7, ._1lj0, ._6ybm, .__6k, ._5qsj, ._6ybk, ._llq {
 	color:#0099ff !important;
 }
@@ -42,7 +38,7 @@ body {
 	background-color: white !important;
 }
 
-._7mkm, ._4gd0, ._7t1o {
+ ._4gd0, ._7t1o {
 	background-color: transparent !important;
 }
 
@@ -58,13 +54,15 @@ svg {
 	color: white !important;
 }
 
+
+
 ._5i_d {
 	background-color: rgba(14, 14, 14, 0.719) !important;
 }
 
 ._hh7  {
 	color: white !important;
-	background-color: #0099ff !important;
+
 }
 
 ._hh7 a {
@@ -142,3 +140,18 @@ svg {
 }
 
 
+._7mkm {
+	background-color: #222 !important;
+}
+
+._1ht3 ._1htf {
+	color: #0099ff !important;
+}
+
+._29_7 ._hh7  {
+	background-color: #222 !important;
+}
+
+._4_j5 path {
+	fill: #0099ff;
+}
