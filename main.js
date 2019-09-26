@@ -9,7 +9,6 @@ const fs = require('fs');
 
 let messenger;
 let loadingWindow;
-let appel
 
 // squirrel installation méthode
 if (setupEvents.handleSquirrelEvent()) {
@@ -63,12 +62,6 @@ app.on('ready', function(){
         frame: true,
         show: false,
         title: "Not Your Messenger",
-    });
-
-    appel = new BrowserWindow({
-        height: 200,
-        width: 200,
-        show: false,
     });
 
     // démarrage de l'application

@@ -5,3 +5,4 @@
 - changement de certaines couleurs pour le darkmode.
 - sélection de son thême de couleurs par tchat.
 - réduction de la largeur minimal a 550pixel
+- application passer en 64bits
