@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="../static/view.css">
+    <title></title>
+</head>
+    <div class="title-box">
+        <div class="logoNormal">
+            <img src="../static/img/mess.png" id="logo" > 
+        </div>
+        <div class="titre">
+            <span id="titre">Apparence</span>
+        </div>     
+        <div class="title-bar">       
+            <button class="title-button" id="fermer">X</button>
+        </div>
+    </div>
+    
+<body>
+    <div>Sélectionner une apparence</div>
+    <div class="darkMode">
+        <div class="modeTitle">Mode sombre</div>
+        <select type="radio" class="selection"><img src="" alt=""></select>
+    </div>
+    <div class="darkMode">
+        <div class="modeTitle">Mode normal</div>
+        <select type="radio" class="selection"><img src="" alt=""></select>
+    </div>
+    
+</body>
+<script>openDevtools();</script>
+<script>
+    const { remote } = require('electron');
+                
+    document.getElementById('fermer').addEventListener('click', () => {
+        remote.getCurrentWindow().close();
+    });
+    
+    console.log('true')
+
+    </script>
+</html>
