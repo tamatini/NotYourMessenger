@@ -1,12 +1,134 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" type="text/css" href="../static/loading.css">
-    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="../static/view.css">
+    <title>Not Your Messenger</title>
 </head>
+    <div class="title-box">
+        <div class="logo" id="logoMenu">
+            <img src="../static/img/mess.png" id="logo" >
+            <div class="menu" id="mainMenu">
+                <div><a href="#" class="apparence">Apparence <span class="fleche">></span></a>
+                    <div class="SubMenu">
+                        <ul class="sublink">
+                            <li class="sublink" id="sombre"><a href="#">Mode Sombre <input name="mode" value="dark" type="radio" class="mode" id="dark"></a></li>
+                            <li class="sublink" id="normal"><a href="#">Mode Normal <input name="mode" value="normal" type="radio" class="mode" id="white"></a></li>
+                        </ul>
+                    </div> 
+                </div>  
+                <a href="#">A propos</a>
+                <a href="#" id="menuQuit">Quitter</a>
+            </div>
+
+        </div>
+        <div class="checked-box">
+            <label class="switch">
+                <input type="checkbox" id="darkmode">
+                <span class="slider round"></span>
+            </label>
+        </div>
+        <div class="titre">
+            <span id="titre">Not Your Messenger</span>
+        </div>     
+        <div class="title-bar">       
+            <button class="title-button" id="reduire">-</button>
+            <button class="title-button" id="agrandir">+</button>
+            <button class="title-button" id="fermer">X</button>
+        </div>
+    </div>
 <body>
+    <webview class="messenger" src="http://www.messenger.com/login"></webview>
+
+
+    <script>
+    const { remote } = require('electron');
+
+    document.getElementById('menuQuit').addEventListener('click', () => {
+        remote.getCurrentWindow().close();
+    })
+    
+    document.getElementById('reduire').addEventListener('click', () => {
+        remote.getCurrentWindow().minimize();
+    });
+
+    document.getElementById('fermer').addEventListener('click', () => {
+        remote.getCurrentWindow().close();
+    });
+
+    document.getElementById('agrandir').addEventListener('click', () => {
+        const currentWindow = remote.getCurrentWindow()
+        if (currentWindow.isMaximized()) {
+            currentWindow.unmaximize()
+        } else {
+            currentWindow.maximize()
+            }
+        });
+    </script>
+
+    <script>
+        const webview = document.querySelector('webview');
+        const path = require('path');
+        const fs = require('fs');
+        const checkBox = document.getElementById('darkmode');
+        const subcheck = document.getElementById('dark');
+        const settings = require('electron-settings')
+        const { app } = require('electron')
+
+        let checked = settings.get('darkmode.check')
+        if (checked=='true') {
+            document.getElementById('darkmode').setAttribute('checked', 'true');
+            document.getElementById('dark').setAttribute('checked', 'true');
+
+            webview.addEventListener('dom-ready', () => {
+                webview.insertCSS(fs.readFileSync(path.join(__dirname, '../static/loading.css'), "utf-8"));
+            }); 
+        } else {
+            document.getElementById('white').setAttribute('checked', 'true');
+        };
+
+        checkBox.addEventListener('click', (e) => {
+            if (document.getElementById('darkmode').checked == true) {          
+                webview.reload();
+                settings.set('darkmode', {
+                    check: 'true'
+                });
+                document.getElementById('dark').setAttribute('checked', 'true');
+                webview.addEventListener('dom-ready', () => {
+                    webview.insertCSS(fs.readFileSync(path.join(__dirname, '../static/loading.css'), "utf-8"))
+                }); 
+            } else {
+                document.getElementById('normal').setAttribute('checked', 'true');
+                localStorage.checked = false;
+                remote.getCurrentWindow().reload();
+                settings.set('darkmode', {
+                    check:'false'
+                });
+            };
+        });
+
+        
+        document.getElementById('sombre').addEventListener('click', () => {
+            document.getElementById('darkmode').setAttribute('checked', 'true');
+            document.getElementById('dark').setAttribute('checked', 'true');
+            settings.set('darkmode', {
+                    check: 'true'
+            });
+            remote.getCurrentWindow().reload();
+        });
+
+        document.getElementById('normal').addEventListener('click', () => {
+            document.getElementById('darkmode').setAttribute('checked', 'false');
+            document.getElementById('white').setAttribute('checked', 'true');
+            settings.set('darkmode', {
+                    check: 'false'
+            });
+            remote.getCurrentWindow().reload();
+        });
+
+
+    </script>
 </body>
 </html>

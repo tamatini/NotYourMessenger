@@ -34,20 +34,23 @@ dans la partie "Fonctionnalités"
 ## Bug connues:
 
 - pas d'appel audio/vidéo(en cour)
+- ~~sauvegarde du thême~~
 - ~~pouce bleu de mauvaise couleur~~
 - ~~icones ce chevauche sur une certaine taille de fenêtre~~
 - ~~fond des liens de la mauvaise couleur~~
 
 ## En cours:
 
-- barre de navigation customizer
-- sélection du dark mode ou normal
+- refactorisation du code et optimisation
+- ~~barre de navigation customizer~~
+- ~~sélection du dark mode ou normal~~
 - choix de la police
 - notification numéré
 - barre de tâche
 - auto-updater
 - installeur différent
-- version MacOS et Linux
+- ~~version MacOS~~ 
+- ~~version Linux~~
 
 le GNU et la contribution est en cours d'écriture. 
 
