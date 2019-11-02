@@ -84,7 +84,6 @@
 
             webview.addEventListener('dom-ready', () => {
                 webview.insertCSS(fs.readFileSync(path.join(__dirname, '../static/loading.css'), "utf-8"));
-                webview.openDevTools();
             }); 
         } else {
             document.getElementById('white').setAttribute('checked', 'true');
