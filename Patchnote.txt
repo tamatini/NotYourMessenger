@@ -1,3 +1,7 @@
+[Version 1.1.2] 02/11/2019 Mise à jours mineurs
+
+- nouvelle installeur pour la version windows de Not Your Messenger.
+
 [Version 1.1.1] 20/10/2019 Mise à jours mineurs
 
 - sauvegarde des paramètres d'apparence

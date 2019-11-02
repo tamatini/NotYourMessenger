@@ -1,6 +1,6 @@
 {
   "name": "notyourmessenger",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Not Your Messenger permettant de concentrer différent réseau sociaux",
   "main": "main.js",
   "scripts": {
@@ -9,12 +9,14 @@
     "package-win": "electron-packager . NotYourMessenger --overwrite --asar=true --platform=win32 --arch=x64 --icon=static/img/mess.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"Not Your Messenger\"",
     "package-linux": "electron-packager . NotYourMessenger --overwrite --asar=true --platform=linux --arch=x64 --icon=static/img/mess.ico --prune=true --out=release-builds",
     "create-installer-win": "node installers/windows/createinstaller.js",
-    "create-installer-mac": "electron-installer-dmg ./release-builds/Electron\\ tutorial\\ app-darwin-x64/Electron\\ NotYourMessenger\\ app.app NotYourMessenger --out=release-builds --overwrite --icon=assets/icons/mac/icon.icns"
+    "create-installer-mac": "electron-installer-dmg ./release-builds/Electron\\ tutorial\\ app-darwin-x64/Electron\\ NotYourMessenger\\ app.app NotYourMessenger --out=release-builds --overwrite --icon=assets/icons/mac/icon.icns",
+    "dist": "electron-builder"
   },
   "author": "TEAHUI Jeffrey",
   "license": "ISC",
   "devDependencies": {
     "electron": "^6.0.3",
+    "electron-builder": "^22.1.0",
     "electron-open-link-in-browser": "^1.0.2",
     "electron-packager": "^14.0.4",
     "electron-single-instance": "0.0.2",
@@ -22,5 +24,20 @@
   },
   "dependencies": {
     "electron-settings": "^3.2.0"
+  },
+
+  "build": {
+    "appId": "com.notyourmessenger.app",
+    "productName": "Not Your Messenger",
+    "target": "NSIS",
+    "buildDependenciesFromSource": "false",
+    "directories": {
+      "output": "build"
+    },
+    "nsis": {
+      "allowToChangeInstallationDirectory": "true",
+      "installerIcon": "static/img/mess.ico",
+      "oneClick": "false"
+    }
   }
 }

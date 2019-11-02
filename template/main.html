@@ -48,7 +48,7 @@
 
     document.getElementById('menuQuit').addEventListener('click', () => {
         remote.getCurrentWindow().close();
-    })
+    });
     
     document.getElementById('reduire').addEventListener('click', () => {
         remote.getCurrentWindow().minimize();
@@ -84,6 +84,7 @@
 
             webview.addEventListener('dom-ready', () => {
                 webview.insertCSS(fs.readFileSync(path.join(__dirname, '../static/loading.css'), "utf-8"));
+                webview.openDevTools();
             }); 
         } else {
             document.getElementById('white').setAttribute('checked', 'true');

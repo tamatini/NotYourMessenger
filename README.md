@@ -48,7 +48,7 @@ dans la partie "Fonctionnalités"
 - notification numéré
 - barre de tâche
 - auto-updater
-- installeur différent
+- ~~installeur différent~~
 - ~~version MacOS~~ 
 - ~~version Linux~~
 

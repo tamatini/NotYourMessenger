@@ -85,11 +85,15 @@ app.on('ready', function(){
     app.on('web-contents-created', (e, contents) => {
         if (contents.getType() == 'webview') {
             contents.on('new-window', (e, url) => {
-            e.preventDefault()
-            shell.openExternal(url)
-            })
-        }
-    })
+                if (url=='http://messenger.com/') {
+                    loadingWindow.open();
+                } else {
+                    e.preventDefault();
+                    shell.openExternal(url);
+                };
+            });
+        };
+    });
 
 // fonctionnalités
     // désactive le menu et affiche l'url messenger
