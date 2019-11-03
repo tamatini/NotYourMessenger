@@ -1,6 +1,5 @@
 const setupEvents = require('./installers/setupEvents');
 const electron = require('electron');
-const url = require('url');
 const path = require('path');
 const {app, BrowserWindow, shell} = electron;
 const gotTheLock = app.requestSingleInstanceLock();
@@ -9,7 +8,6 @@ const fs = require('fs');
 const settings = require('electron-settings');
 
 let messenger;
-let loadingWindow;
 
 // squirrel installation méthode
 if (setupEvents.handleSquirrelEvent()) {
@@ -33,24 +31,7 @@ if (!gotTheLock){
 app.on('ready', function(){
     app.requestSingleInstanceLock();
 
-
 // Fenêtre de l'application
-    // Fenêtre de chargement
-    loadingWindow = new BrowserWindow({
-        frame: false,
-        height: 300,
-        width: 450,
-        transparent: true
-    });
-    
-    loadingWindow.loadURL(url.format({
-        pathname: path.join(__dirname, '/template/loading.html'),
-        protocol: 'file',
-        slashes: true
-    }));
-
-    loadingWindow.setMenu(null);
-
     // Fenêtre messenger
     messenger = new BrowserWindow({
         webPreferences: {
