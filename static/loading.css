@@ -1,4 +1,9 @@
 html { background: transparent }
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Liu+Jian+Mao+Cao&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Pacifico&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Lakki+Reddy&display=swap');
+
 
 #webview {
 	width: 100vw;
@@ -54,7 +59,8 @@ svg {
 	color: white !important;
 }
 
-
+._z4_ {
+}
 
 ._5i_d {
 	background-color: rgba(14, 14, 14, 0.719) !important;

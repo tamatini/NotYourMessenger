@@ -55,7 +55,8 @@
     });
 
     document.getElementById('fermer').addEventListener('click', () => {
-        remote.getCurrentWindow().close();
+        remote.getCurrentWindow().minimize();
+        remote.getCurrentWindow().hide();
     });
 
     document.getElementById('agrandir').addEventListener('click', () => {
@@ -117,6 +118,7 @@
                     check: 'true'
             });
             remote.getCurrentWindow().reload();
+            
         });
 
         document.getElementById('normal').addEventListener('click', () => {
