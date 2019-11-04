@@ -1,8 +1,9 @@
 const electron = require('electron');
 const path = require('path');
-const {app, BrowserWindow, shell, Menu, Tray} = electron;
+const {app, BrowserWindow, shell, Menu, Tray, ipcMain } = electron;
 const gotTheLock = app.requestSingleInstanceLock();
 const settings = require('electron-settings');
+const { autoUpdater } = require('electron-updater')
 
 let messenger;
 let tray = null
@@ -23,7 +24,7 @@ if (!gotTheLock){
 
 app.on('ready', function(){
     app.requestSingleInstanceLock();
-    
+    autoUpdater.checkForUpdatesAndNotify();
 // Fenêtre de l'application
     // Fenêtre messenger
     messenger = new BrowserWindow({
@@ -41,6 +42,7 @@ app.on('ready', function(){
         title: "Not Your Messenger",
     });
 
+    // icône dans le Tray
     tray = new Tray(path.join(__dirname, "/static/img/mess.ico"))
     const contextMenu = new Menu.buildFromTemplate([
         { label: "Quitter NYM", click() { 
@@ -59,7 +61,6 @@ app.on('ready', function(){
     ]);
     tray.setToolTip('Not Your Messenger');
     tray.setContextMenu(contextMenu)
-
     tray.on('click', () => {
         messenger.show()
     })
@@ -93,8 +94,21 @@ app.on('ready', function(){
         };
     });
 
+    ipcMain.on('restart_app', () => {
+        autoUpdater.quitAndInstall();
+    });
+
 // fonctionnalités
     // désactive le menu et affiche l'url messenger
     messenger.loadFile("./template/main.html");
 
+
+// auto update fonctions
+    autoUpdater.on('update-available', () => {
+        messenger.webContents.send('Mise à jour disponible');
+    });
+
+    autoUpdater.on('update-downloaded', () => {
+        messenger.webContents.send('Mise à jour télécharger')
+    })
 })
