@@ -1,13 +1,13 @@
 const setupEvents = require('./installers/setupEvents');
 const electron = require('electron');
 const path = require('path');
-const {app, BrowserWindow, shell} = electron;
+const {app, BrowserWindow, shell, Menu, Tray} = electron;
 const gotTheLock = app.requestSingleInstanceLock();
 const {dialog} = require('electron');
-const fs = require('fs');
 const settings = require('electron-settings');
 
 let messenger;
+let tray = null
 
 // squirrel installation méthode
 if (setupEvents.handleSquirrelEvent()) {
@@ -30,7 +30,7 @@ if (!gotTheLock){
 
 app.on('ready', function(){
     app.requestSingleInstanceLock();
-
+    
 // Fenêtre de l'application
     // Fenêtre messenger
     messenger = new BrowserWindow({
@@ -48,6 +48,17 @@ app.on('ready', function(){
         title: "Not Your Messenger",
     });
 
+    tray = new Tray(path.join(__dirname, "/static/img/mess.ico"))
+    const contextMenu = new Menu.buildFromTemplate([
+        { label: "Quitter NYM", click() { messenger.destroy() }}
+    ]);
+    tray.setToolTip('Not Your Messenger');
+    tray.setContextMenu(contextMenu)
+
+    tray.on('click', () => {
+        messenger.show()
+    })
+
 
     // démarrage de l'application
     messenger.setMenu(null);
@@ -56,7 +67,6 @@ app.on('ready', function(){
         positiony = settings.get('position.y');
         winWidth = settings.get('windowsSize.width');
         winHeight = settings.get('windowsSize.height');
-        loadingWindow.destroy();
         messenger.show();
         messenger.setPosition(positionx, positiony);
         messenger.setSize(winWidth, winHeight);
@@ -67,7 +77,7 @@ app.on('ready', function(){
         if (contents.getType() == 'webview') {
             contents.on('new-window', (e, url) => {
                 if (url=='http://messenger.com/') {
-                    loadingWindow.open();
+                    messenger.open();
                 } else {
                     e.preventDefault();
                     shell.openExternal(url);
@@ -79,10 +89,8 @@ app.on('ready', function(){
 // fonctionnalités
     // désactive le menu et affiche l'url messenger
     messenger.loadFile("./template/main.html");
-    messenger.webContents.on('did-finish-load', function() {
-        messenger.webContents.insertCSS(fs.readFileSync(path.join(__dirname, '/static/loading.css'), "utf-8"))  
-    });
-
+    messenger.once('focus', () => messenger.flashFrame(false));
+    messenger.flashFrame(true);
 
     // attrape l'event close et cache la fenêtre pour fermer l'application
     messenger.on('close', function (event){
@@ -100,21 +108,7 @@ app.on('ready', function(){
         })
 
         event.preventDefault();
-
-        let options = {
-            type: 'question',
-            buttons: ['Oui', 'Non'],
-            cancelId: 1,
-            message: "Quitter l'application?",
-            title: "Not Your Messenger",
-            icon: path.join(__dirname, "/static/img/mess.ico")
-        };
-        
-        dialog.showMessageBox(messenger, options, response => {
-            if (response === 0) {
-                messenger.destroy();
-            };
-        });
+        messenger.minimize();
     });
 
     // fonctionnalité taskbar

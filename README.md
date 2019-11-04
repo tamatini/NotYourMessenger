@@ -46,7 +46,7 @@ dans la partie "Fonctionnalités"
 - ~~sélection du dark mode ou normal~~
 - choix de la police
 - notification numéré
-- barre de tâche
+- ~~barre de tâche~~
 - auto-updater
 - ~~installeur différent~~
 - ~~version MacOS~~ 

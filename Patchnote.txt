@@ -1,3 +1,10 @@
+[Version 1.1.3] 03/11/2019 Mise à jours mineurs
+
+- retrait de la fenêtre de chargement, devenu inutile avec l'application qui se charge plus rapidement
+- l'application est maintenant présente dans le Tray et se ferme à partir de là.
+- l'application disparait de la barre de tâches, lorsqu'on l'a ferme.
+- plus de message d'alerte lorsque l'on ferme l'application.
+
 [Version 1.1.2] 02/11/2019 Mise à jours mineurs
 
 - nouvelle installeur pour la version windows de Not Your Messenger.
