@@ -24,7 +24,7 @@ if (!gotTheLock){
 
 app.on('ready', function(){
     app.requestSingleInstanceLock();
-    autoUpdater.checkForUpdatesAndNotify();
+    
 // Fenêtre de l'application
     // Fenêtre messenger
     messenger = new BrowserWindow({
@@ -82,6 +82,7 @@ app.on('ready', function(){
             messenger.show();
             messenger.restore();
         };
+        autoUpdater.checkForUpdatesAndNotify();
     });
 
     // attrappe l'ouverture de lien et l'ouvre dans le navigateur par défaut
@@ -98,17 +99,20 @@ app.on('ready', function(){
         autoUpdater.quitAndInstall();
     });
 
+    ipcMain.on('app_version', (event) => {
+        event.sender.send('app_version', { version: app.getVersion() });
+      });
+
 // fonctionnalités
     // désactive le menu et affiche l'url messenger
     messenger.loadFile("./template/main.html");
 
-
 // auto update fonctions
     autoUpdater.on('update-available', () => {
-        messenger.webContents.send('Mise à jour disponible');
+        messenger.webContents.send('update_available');
     });
 
     autoUpdater.on('update-downloaded', () => {
-        messenger.webContents.send('Mise à jour télécharger')
+        messenger.webContents.send('update_downloaded')
     })
 })

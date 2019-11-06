@@ -45,10 +45,10 @@
     <div id="notification" class="hidden">
         <p id="message"></p>
         <button id="close-button" onClick="closeNotification()">
-          Close
+          Fermer
         </button>
         <button id="restart-button" onClick="restartApp()" class="hidden">
-          Restart
+          Redémarrer
         </button>
       </div>
 
@@ -77,17 +77,20 @@
             }
         });
 
+    const { ipcRenderer } = require('electron')
     const notification = document.getElementById('notification');
     const message = document.getElementById('message');
     const restartButton = document.getElementById('restart-button');
+
     ipcRenderer.on('update_available', () => {
         ipcRenderer.removeAllListeners('update_available');
-        message.innerText = 'A new update is available. Downloading now...';
+        message.innerText = 'Mise à jour est disponible, téléchargement en cour...';
         notification.classList.remove('hidden');
     });
+
     ipcRenderer.on('update_downloaded', () => {
         ipcRenderer.removeAllListeners('update_downloaded');
-        message.innerText = 'Update Downloaded. It will be installed on restart. Restart now?';
+        message.innerText = "Mise à jour fini. Redémarrer l'application?";
         restartButton.classList.remove('hidden');
         notification.classList.remove('hidden');
     });
