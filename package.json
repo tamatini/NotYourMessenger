@@ -3,6 +3,10 @@
   "version": "1.1.3",
   "description": "Not Your Messenger permettant de concentrer différent réseau sociaux",
   "main": "main.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tamatini/NotYourMessenger.git"
+  },
   "scripts": {
     "start": "electron .",
     "package-mac": "electron-packager . NotYourMessenger --overwrite --platform=darwin --arch=x64 --icon=static/img/mess.ico --prune=true --out=release-builds",
@@ -10,7 +14,9 @@
     "package-linux": "electron-packager . NotYourMessenger --overwrite --asar=true --platform=linux --arch=x64 --icon=static/img/mess.ico --prune=true --out=release-builds",
     "create-installer-win": "node installers/windows/createinstaller.js",
     "create-installer-mac": "electron-installer-dmg ./release-builds/Electron\\ tutorial\\ app-darwin-x64/Electron\\ NotYourMessenger\\ app.app NotYourMessenger --out=release-builds --overwrite --icon=assets/icons/mac/icon.icns",
-    "dist": "electron-builder"
+    "dist": "electron-builder",
+    "build": "electron-builder build --win --publish never",
+    "deploy": "electron-builder build --win --publish always"
   },
   "author": "TEAHUI Jeffrey",
   "license": "ISC",
@@ -23,9 +29,9 @@
     "electron-winstaller": "^4.0.0"
   },
   "dependencies": {
-    "electron-settings": "^3.2.0"
+    "electron-settings": "^3.2.0",
+    "electron-updater": "^4.2.0"
   },
-
   "build": {
     "appId": "com.notyourmessenger.app",
     "productName": "Not Your Messenger",
@@ -34,6 +40,11 @@
     "directories": {
       "output": "build"
     },
+    "publish": [{
+      "provider":"github",
+      "owner": "tamatini",
+      "repos": "NotYourMessenger"}],
+      
     "nsis": {
       "allowToChangeInstallationDirectory": true,
       "installerIcon": "static/img/mess.ico",
