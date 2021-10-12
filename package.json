@@ -21,7 +21,7 @@
   "author": "TEAHUI Jeffrey",
   "license": "ISC",
   "devDependencies": {
-    "electron": "^6.0.3",
+    "electron": "^11.5.0",
     "electron-builder": "^22.1.0",
     "electron-open-link-in-browser": "^1.0.2",
     "electron-packager": "^14.0.4",
