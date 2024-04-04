@@ -22,7 +22,7 @@
   "license": "ISC",
   "devDependencies": {
     "electron": "^6.0.3",
-    "electron-builder": "^22.1.0",
+    "electron-builder": "^22.14.13",
     "electron-open-link-in-browser": "^1.0.2",
     "electron-packager": "^14.0.4",
     "electron-single-instance": "0.0.2",
